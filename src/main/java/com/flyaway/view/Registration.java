@@ -5,10 +5,12 @@ import com.flyaway.controller.DBConnection;
 import com.flyaway.models.Admin;
 import org.hibernate.Session;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -37,27 +39,44 @@ public class Registration extends HttpServlet {
                         "    </form>");
 
             } else {
+                String email = request.getParameter("email");
+                Admin admin1 = new AdminControl().adminLogin(email);
+                System.out.println(admin1);
+                if( admin1!= null) {
+                    String msg =  "There already exist an account with email " + email +"... Please login...";
+                    request.setAttribute("message", msg);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
                 String firstName = request.getParameter("firstname");
                 String lastname = request.getParameter("lastname");
                 String phone = request.getParameter("phone");
-                String email = request.getParameter("email");
                 String pass = request.getParameter("password");
                 System.out.println("pass : " + pass);
                 Admin admin = new Admin(firstName, lastname, phone, email, pass);
                 System.out.println(admin);
                 AdminControl adminControl = new AdminControl();
-                if(adminControl.RegisterAdmin(admin))
-                    writer.println("registration success");
-                else writer.println("could not register.. please try again");
+                if(adminControl.RegisterAdmin(admin)) {
+                    //HttpSession session = SessionCreation.createSession(request);
+                    request.setAttribute("message", "registration success.. please login");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                }
+                else {
+                    writer.println("Could not login due to unexpected error.. please try again..");
+                    writer.println("<form method=\"get\" action=\"/register\">\n" +
+                            "        <input type=\"submit\" value=\"Try Again\" >\n" +
+                            "    </form>");
+                }
 
             }
+        } catch (ServletException e) {
+            e.printStackTrace();
         }
     }
 
 
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("registration.html");
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.getRequestDispatcher("registration.html").forward(request, response);
     }
 
     private Set<String> validateInput(HttpServletRequest request, Properties properties) {
@@ -76,6 +95,7 @@ public class Registration extends HttpServlet {
             }
 
         }
+
         return errorMessage;
     }
 }

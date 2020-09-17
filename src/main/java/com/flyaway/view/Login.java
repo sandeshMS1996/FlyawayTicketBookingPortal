@@ -1,8 +1,7 @@
 package com.flyaway.view;
 
 import com.flyaway.controller.AdminControl;
-import org.hibernate.Session;
-
+import com.flyaway.models.Admin;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,42 +9,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Enumeration;
 
 @WebServlet(name = "Login", urlPatterns = "/login")
 public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        HttpSession session = request.getSession();
-        if(session.isNew()) {
-            session.setAttribute("loggedIn", false);
-            session.setAttribute("loginAttempts", 1);
-            session.setAttribute("forbid", false);
+        HttpSession session = request.getSession(true);
+        System.out.println("new Session: " + session.getId());
+        if(session.getAttribute("user") != null) {
+            response.sendRedirect(request.getContextPath()+ "home/welcome.html");
+            return;
         }
-            else {
-            int attempts = (int) session.getAttribute("loginAttempts");
-            if (attempts >= 3)
-                session.setAttribute("forbid", true);
-            session.setAttribute("loginAttempts", ++attempts);
-            AdminControl adminControl = new AdminControl();
-            if (adminControl.adminLogin(email, password)) {
-                session.setAttribute("loginAttempts", 0);
-                session.setAttribute("loggedIn", true);
-                response.getWriter().println("success");
-                /*if (session.getAttribute("reDirectURL") != null)
-                    response.sendRedirect((String) session.getAttribute("reDirectURL"));
-                else response.sendRedirect("home");*/
-            } else {
-                response.sendRedirect("login.jsp");
-
-
+        int attempts = 0;
+        if(session.getAttribute("loginAttempts") != null)
+            attempts = (int) session.getAttribute("loginAttempts");
+        AdminControl adminControl = new AdminControl();
+        Admin admin = adminControl.adminLogin(email);
+        if ((admin != null) && admin.getPassword().equals(password)) {
+            session.removeAttribute("loginAttempts");
+            session.setAttribute("user", admin.getEmailID());
+            String loginurl= "welcome.html";
+            if (request.getAttribute("redirectURL") != null)
+                loginurl = (String) request.getAttribute("redirectURL");
+            response.sendRedirect(loginurl);
+        }
+        else {
+            request.setAttribute("message", "invalid credentials");
+            System.out.println("setting error message invalid credentials ");
+            if(admin != null)
+                session.setAttribute("loginAttempts", ++attempts);
+            Enumeration<String> attributeNames = session.getAttributeNames();
+            while (attributeNames.hasMoreElements()) {
+                String s =  attributeNames.nextElement();
+                System.out.println(s + " ==> " + session.getAttribute(s));
             }
-
-
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("login.jsp");
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 }

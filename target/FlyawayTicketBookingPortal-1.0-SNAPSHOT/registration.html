@@ -3,15 +3,28 @@
     <title>
         Registration Page
     </title>
+    <style>
+        .button {
+            font: bold 11px Arial;
+            text-decoration: none;
+            background-color: #EEEEEE;
+            color: #333333;
+            padding: 2px 6px 2px 6px;
+            border-top: 1px solid #CCCCCC;
+            border-right: 1px solid #333333;
+            border-bottom: 1px solid #333333;
+            border-left: 1px solid #CCCCCC;
+        }
+    </style>
 </head>
+
 <body style="background-color: chartreuse">
 
 <div>
     <h1> Flyaway AirWays Admin Registration</h1>
-</div>
-<br>
-<br>
-<div>
+    <h3> Already Registered <a class="button" href="/login">login</a> </h3>
+
+    </div>
 
 <form action="/register" method="post">
     <label> Firstname:
@@ -30,7 +43,5 @@
     <label>Re-type password: <input type="Password" id="repass" name="repass"> <br><br></label>
     <input type="submit" value="Register"/>
 </form>
-
-</div>
 </body>
 </html>

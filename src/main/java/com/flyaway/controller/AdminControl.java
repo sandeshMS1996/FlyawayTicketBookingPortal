@@ -12,6 +12,7 @@ import java.util.Set;
 public class AdminControl {
     public boolean RegisterAdmin(Admin admin) {
         DBConnection connection = new DBConnection();
+
         Session session = connection.getSession();
         session.beginTransaction();
         session.save(admin);
@@ -29,7 +30,7 @@ public class AdminControl {
         }
     }
     
-    public boolean adminLogin(String uname, String password) {
+    public Admin adminLogin(String uname) {
         DBConnection connection = new DBConnection();
         Session session = connection.getSession();
         session.beginTransaction();
@@ -38,14 +39,40 @@ public class AdminControl {
         Admin admin = (Admin) query1.uniqueResult();
         System.out.println(admin);
         session.close();
-        if(admin.getEmailID().equals(uname) && admin.getPassword().equals(password))
-            return true;
-        else return false;
+        return admin;
+    }
+
+    public boolean changePassword(Admin admin, String newPassword) {
+        DBConnection connection = new DBConnection();
+        Session session = connection.getSession();
+        Query query = session.createQuery("update Admin a set password = : pass where a.emailID = : email");
+        session.beginTransaction();
+        query.setParameter("pass", newPassword);
+        query.setParameter("email", admin.getEmailID());
+        try {
+            if(query.executeUpdate() == 1) {
+                session.getTransaction().commit();
+                return true;
+            }
+            else {
+                session.getTransaction().rollback();
+                return false;
+            }
+        }catch (HibernateException e) {
+            e.printStackTrace();
+            return false;
+        }finally {
+            session.close();
+        }
+
     }
 
     //test
     public static void main(String[] args) {
-        AdminControl control = new AdminControl();
-        System.out.println(control.adminLogin("sandesh@gmail.com", "San@1234"));
+        AdminControl adminControl = new AdminControl();
+        Admin admin = new Admin("sandesh", "ms",
+                "9008600398","sandesnnnnh@gmail.com", "San@1234");
+        System.out.println(adminControl.changePassword(admin, "1234"));
     }
+
 }
