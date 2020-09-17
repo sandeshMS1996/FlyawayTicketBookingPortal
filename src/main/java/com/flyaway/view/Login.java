@@ -18,7 +18,7 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession(true);
         System.out.println("new Session: " + session.getId());
-        int attempts =1;
+        int attempts =0;
         if(session.getAttribute("loginAttempts") != null)
             attempts = (int) session.getAttribute("loginAttempts");
         AdminControl adminControl = new AdminControl();
@@ -30,14 +30,8 @@ public class Login extends HttpServlet {
         }
         else {
             request.setAttribute("message", "invalid credentials");
-            System.out.println("setting error message invalid credentials ");
             if(admin != null)
                 session.setAttribute("loginAttempts", ++attempts);
-            Enumeration<String> attributeNames = session.getAttributeNames();
-            while (attributeNames.hasMoreElements()) {
-                String s =  attributeNames.nextElement();
-                System.out.println(s + " ==> " + session.getAttribute(s));
-            }
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
     }

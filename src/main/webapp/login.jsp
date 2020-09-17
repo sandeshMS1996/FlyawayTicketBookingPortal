@@ -31,7 +31,7 @@
 
 <div>
     <h1> Login to Flyaway Air Ticket booking Admin portal </h1>
-    <h3> Not Registered? <a class="button" href="/register">Register</a> </h3>
+    <h3> Not Registered? <a class="button" href="${pageContext.request.contextPath}/register">Register</a> </h3>
 </div>
 
 <% if ( request.getAttribute("message")  != null) { %>
@@ -44,11 +44,13 @@
  if (count != 0 && count < 4)  { %>
 <p style="color: red">Login Attempt:  <%= count %> </p>
   <%  }
-if ( count >= 4) { %>
-<p style="color: red"> Login access revoked, please try again after some times</p>
+if ( count >= 4) {
+  String msg = "Login access revoked, please try again after " + (session.getMaxInactiveInterval()/60) +
+          " Minute(s)"; %>
+<p style="color: red"> <%=msg%></p>
 <% }
 else  { %>
-    <form action="/login" method="post">
+    <form action="${pageContext.request.contextPath}/login" method="post">
         <table style="with: 50%">
 
         <tr>
