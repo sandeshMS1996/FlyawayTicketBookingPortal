@@ -14,6 +14,7 @@ public class Logout extends HttpServlet {
         HttpSession session = request.getSession(false);
         System.out.println("User="+request.getSession().getAttribute("user"));
         if(session != null){
+            System.out.println("[INFO] Destroying " + session.getId() );
             session.invalidate();
         }
         //session  = SessionCreation.createSession(request);

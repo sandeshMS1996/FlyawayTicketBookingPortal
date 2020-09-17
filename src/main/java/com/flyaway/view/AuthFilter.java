@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-@javax.servlet.annotation.WebFilter(filterName = "WebFilter", urlPatterns = "/*")
+@javax.servlet.annotation.WebFilter(filterName = "AuthFilter", urlPatterns = "/restricted/*")
 public class AuthFilter implements Filter {
     static  Set<String> exclusions = new HashSet<>();
 
@@ -18,17 +18,13 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
-        boolean loggedIn = SessionCreation.isLoggedIn(request);
-        System.out.println("logged in: " + loggedIn);
-        String requestURI = request.getRequestURI();
-        boolean excluded  = requestURI.equals("/login") || requestURI.equals("/register") ||
-                requestURI.equals("/")|| requestURI.equals("/change-password") ||
-                requestURI.equals("login.jsp");
-        System.out.println("excluded " + excluded + requestURI);
-        if(!loggedIn && !excluded) {
+        System.out.println("filtering " + request.getRequestURI());
+        HttpSession session = request.getSession(false);
+        boolean isLoggedIn = session != null && session.getAttribute("user") != null;
+        if(!isLoggedIn) {
             request.setAttribute("message", "please login, before viewing this page");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-            System.out.println("[INFO] caught un logged in request.. forwording");
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            System.out.println("[INFO] caught un logged in request.. forwarding");
         }
         else chain.doFilter(req, resp);
     }

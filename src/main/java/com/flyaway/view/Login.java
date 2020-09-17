@@ -18,11 +18,7 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         HttpSession session = request.getSession(true);
         System.out.println("new Session: " + session.getId());
-        if(session.getAttribute("user") != null) {
-            response.sendRedirect(request.getContextPath()+ "home/welcome.html");
-            return;
-        }
-        int attempts = 0;
+        int attempts =1;
         if(session.getAttribute("loginAttempts") != null)
             attempts = (int) session.getAttribute("loginAttempts");
         AdminControl adminControl = new AdminControl();
@@ -30,10 +26,7 @@ public class Login extends HttpServlet {
         if ((admin != null) && admin.getPassword().equals(password)) {
             session.removeAttribute("loginAttempts");
             session.setAttribute("user", admin.getEmailID());
-            String loginurl= "welcome.html";
-            if (request.getAttribute("redirectURL") != null)
-                loginurl = (String) request.getAttribute("redirectURL");
-            response.sendRedirect(loginurl);
+            response.sendRedirect("restricted/welcome.html");
         }
         else {
             request.setAttribute("message", "invalid credentials");

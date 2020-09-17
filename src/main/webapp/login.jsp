@@ -7,6 +7,8 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
+<% if(request.getSession(false).getAttribute("user") != null)
+    response.sendRedirect(request.getContextPath() + "restricted/welcome.html"); %>
 <html>
 <head>
     <title>Login</title>
