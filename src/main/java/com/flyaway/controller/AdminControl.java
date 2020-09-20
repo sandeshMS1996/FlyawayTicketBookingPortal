@@ -18,7 +18,7 @@ public class AdminControl {
         session.save(admin);
         try {
             session.getTransaction().commit();
-            System.out.println(session.getTransaction().getStatus());
+            System.out.println("[INFO] Registration success userID + " + admin.getAdminId());
             return true;
         } catch (ConstraintViolationException e) {
             e.printStackTrace();

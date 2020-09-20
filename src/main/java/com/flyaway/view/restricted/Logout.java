@@ -1,4 +1,4 @@
-package com.flyaway.view;
+package com.flyaway.view.restricted;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,18 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "Logout", urlPatterns = "/logout")
+@WebServlet(name = "Logout", urlPatterns = "/restricted/logout")
 public class Logout extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        System.out.println("User="+request.getSession().getAttribute("user"));
         if(session != null){
-            System.out.println("[INFO] Destroying " + session.getId() );
+            System.out.println("[INFO] Destroying session" + session.getId() );
             session.invalidate();
         }
-        //session  = SessionCreation.createSession(request);
         request.setAttribute("message", "successfully logged out..");
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.getRequestDispatcher("/login.jsp").forward(request, response);
 
     }
 

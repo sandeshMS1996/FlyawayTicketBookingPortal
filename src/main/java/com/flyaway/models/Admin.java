@@ -3,6 +3,8 @@ package com.flyaway.models;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "admin_details")
@@ -10,8 +12,8 @@ public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "admin_id")
-    private Long adminId;
+    @Column(name = "admin_id", updatable = false, nullable = false)
+    private Integer adminId;
 
     @Column(name = "first_name", nullable = false, length = 10)
     @NotNull
@@ -31,8 +33,16 @@ public class Admin {
     @Column(name = "password",length = 64, nullable = false)
     private String password;
 
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "admin")
+    List<Airlines> airlines = new ArrayList<Airlines>();
+
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "admin")
+    List<Flights> routes = new ArrayList<>();
+
     public Admin() {
     }
+
+
 
     public Admin(String firstName, String lastName, String phoneNo, String emailID, String password) {
         this.firstName = firstName;
@@ -42,20 +52,28 @@ public class Admin {
         this.password = password;
     }
 
-    public String getPhoneNo() {
-        return phoneNo;
+    public List<Flights> getRoutes() {
+        return routes;
     }
 
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
+    public void setRoutes(List<Flights> routes) {
+        this.routes = routes;
     }
 
-    public Long getId() {
+    public List<Airlines> getAirlines() {
+        return airlines;
+    }
+
+    public void setAirlines(List<Airlines> admin) {
+        this.airlines = admin;
+    }
+
+    public Integer getAdminId() {
         return adminId;
     }
 
-    public Long getAdminId() {
-        return adminId;
+    public void setAdminId(Integer adminId) {
+        this.adminId = adminId;
     }
 
     public String getFirstName() {
@@ -74,6 +92,16 @@ public class Admin {
         this.lastName = lastName;
     }
 
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
     public String getEmailID() {
         return emailID;
     }
@@ -84,6 +112,10 @@ public class Admin {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -97,6 +129,4 @@ public class Admin {
                 ", password='" + password + '\'' +
                 '}';
     }
-
-
 }
