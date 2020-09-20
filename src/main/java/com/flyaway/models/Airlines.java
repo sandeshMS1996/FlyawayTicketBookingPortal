@@ -22,23 +22,37 @@ public class Airlines {
     @Column(name = "home_country", length = 20, nullable = false)
     private String Country;
 
-    @OneToMany
-    private List<Routes> routes = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.REMOVE})
+    private List<Flights> flights = new ArrayList<>();
 
     public Airlines() {
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "admin", updatable = false)
+    private Admin admin;
+
 
     public Airlines(String name, String country) {
         this.name = name;
         Country = country;
     }
 
-    public List<Routes> getRoutes() {
-        return routes;
+    public Admin getAdmin() {
+        return admin;
     }
 
-    public void setRoutes(List<Routes> routes) {
-        this.routes = routes;
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    public List<Flights> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<Flights> routes) {
+
+        this.flights = routes;
     }
 
     public int getAirlineID() {

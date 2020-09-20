@@ -1,5 +1,6 @@
 package com.flyaway.controller;
 
+import com.flyaway.models.Admin;
 import com.flyaway.models.Airlines;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -10,21 +11,21 @@ import java.util.List;
 import java.util.Map;
 
 public class AirlinesControl {
-    public boolean addNewAirline(Airlines airlines) {
-        Session session =  null;
-        try {
-            session = new DBConnection().getSession();
+    public boolean addNewAirline(Airlines airline, Integer adminID) {
+        try (Session session = new DBConnection().getSession()) {
             session.getTransaction().begin();
-            session.save(airlines);
+            Admin admin = (Admin) session.get(Admin.class, adminID);
+            airline.setAdmin(admin);
+            admin.getAirlines().add(airline);
+            System.out.println(admin);
+            admin.getAirlines().forEach(System.out::println);
+            session.persist(admin);
             session.getTransaction().commit();
-            session.close();
+            //session.close();
             return true;
-        }catch (HibernateException e) {
+        } catch (HibernateException e) {
             e.printStackTrace();
             return false;
-        }finally {
-            if(session != null)
-                session.close();
         }
 
 

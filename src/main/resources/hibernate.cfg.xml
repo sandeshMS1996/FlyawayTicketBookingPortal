@@ -11,14 +11,15 @@
     <property name="connection.password">root</property>
 
     <!-- DB schema will be updated if needed -->
-    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.hbm2ddl.auto">create-drop</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
     <property name="hibernate.format_sql">true</property>
 
     <mapping class="com.flyaway.models.Admin"/>
     <mapping class="com.flyaway.models.Airlines"/>
-    <mapping class="com.flyaway.models.Routes"/>
+    <mapping class="com.flyaway.models.Flights"/>
+    <mapping class="com.flyaway.models.Places"/>
 
   </session-factory>
 

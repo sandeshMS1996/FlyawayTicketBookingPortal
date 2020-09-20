@@ -34,9 +34,7 @@ public class Registration extends HttpServlet {
                 errors.forEach(a -> writer.print("<h5 style=\"color: red\">" + a + "</h5>"));
                 errors.removeIf(Objects::nonNull);
                 writer.println("Please try again...<br> <br>");
-                writer.println("<form method=\"get\" action=\"/register\">\n" +
-                        "        <input type=\"submit\" value=\"Try Again\" >\n" +
-                        "    </form>");
+                request.getRequestDispatcher("registration.html").include(request,response);
 
             } else {
                 String email = request.getParameter("email");
@@ -58,6 +56,7 @@ public class Registration extends HttpServlet {
                 if(adminControl.RegisterAdmin(admin)) {
                     //HttpSession session = SessionCreation.createSession(request);
                     request.setAttribute("message", "registration success.. please login");
+                    System.out.println("registration success + " + admin.getAdminId());
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
                 else {
