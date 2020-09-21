@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Places {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotNull

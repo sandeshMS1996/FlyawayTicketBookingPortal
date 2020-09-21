@@ -27,7 +27,7 @@
 <h1> Add new Flight...</h1>
 <% Map<Integer, String> pairs = (Map<Integer, String>) request.getAttribute("airLines");
 %>
-<form action="/restricted/add-new-flight" method="post">
+<form action="add-new-flight" method="post">
     <label> select Airlines:
         <select name="airline" class="select-box">
             <% for (Map.Entry<Integer, String> i : pairs.entrySet()) { %>

@@ -795,7 +795,7 @@ true posixrules
     <database id="3" parent="1" name="testdb">
       <ObjectId>17170</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1061</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1432</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <role id="4" parent="1" name="pg_execute_server_program">
@@ -847,7 +847,7 @@ true posixrules
       <Comment>standard public schema</Comment>
       <StateNumber>276</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>1062</IntrospectionStateNumber>
+      <IntrospectionStateNumber>1433</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="16" parent="3" name="heap">
@@ -918,195 +918,241 @@ true posixrules
     <language id="26" parent="3" name="plpgsql"/>
     <language id="27" parent="3" name="sql"/>
     <sequence id="28" parent="15" name="hibernate_sequence">
-      <ObjectId>17238</ObjectId>
+      <ObjectId>17979</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1041</StateNumber>
+      <StateNumber>1409</StateNumber>
       <DataType>bigint|0s</DataType>
     </sequence>
     <table id="29" parent="15" name="admin_details">
-      <ObjectId>17240</ObjectId>
+      <ObjectId>17981</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1050</StateNumber>
+      <StateNumber>1418</StateNumber>
     </table>
     <table id="30" parent="15" name="airlines">
-      <ObjectId>17245</ObjectId>
+      <ObjectId>17986</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1050</StateNumber>
+      <StateNumber>1418</StateNumber>
     </table>
-    <table id="31" parent="15" name="airlines_routes">
+    <table id="31" parent="15" name="airlines_flights">
+      <ObjectId>17991</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>1419</StateNumber>
+    </table>
+    <table id="32" parent="15" name="airlines_routes">
       <ObjectId>17250</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>1051</StateNumber>
     </table>
-    <table id="32" parent="15" name="flights_frequency">
-      <ObjectId>17253</ObjectId>
+    <table id="33" parent="15" name="flights">
+      <ObjectId>17994</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1053</StateNumber>
+      <StateNumber>1419</StateNumber>
     </table>
-    <table id="33" parent="15" name="places">
-      <ObjectId>17256</ObjectId>
+    <table id="34" parent="15" name="flights_frequency">
+      <ObjectId>17999</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>1054</StateNumber>
+      <StateNumber>1423</StateNumber>
     </table>
-    <table id="34" parent="15" name="routes">
+    <table id="35" parent="15" name="places">
+      <ObjectId>18002</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>1424</StateNumber>
+    </table>
+    <table id="36" parent="15" name="routes">
       <ObjectId>17261</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>1051</StateNumber>
     </table>
-    <column id="35" parent="29" name="admin_id">
+    <column id="37" parent="29" name="admin_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1042</StateNumber>
+      <StateNumber>1410</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="36" parent="29" name="email_id">
+    <column id="38" parent="29" name="email_id">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1042</StateNumber>
+      <StateNumber>1410</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="37" parent="29" name="first_name">
+    <column id="39" parent="29" name="first_name">
       <Position>3</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1042</StateNumber>
+      <StateNumber>1410</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="38" parent="29" name="last_name">
+    <column id="40" parent="29" name="last_name">
       <Position>4</Position>
       <DataType>varchar(10)|0s</DataType>
-      <StateNumber>1042</StateNumber>
+      <StateNumber>1410</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="39" parent="29" name="password">
+    <column id="41" parent="29" name="password">
       <Position>5</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1042</StateNumber>
+      <StateNumber>1410</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="40" parent="29" name="phone_number">
+    <column id="42" parent="29" name="phone_number">
       <Position>6</Position>
       <DataType>varchar(15)|0s</DataType>
-      <StateNumber>1042</StateNumber>
+      <StateNumber>1410</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="41" parent="29" name="admin_details_pkey">
-      <ObjectId>17243</ObjectId>
-      <StateNumber>1042</StateNumber>
+    <index id="43" parent="29" name="admin_details_pkey">
+      <ObjectId>17984</ObjectId>
+      <StateNumber>1410</StateNumber>
       <ColNames>admin_id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="42" parent="29" name="uk_7lm4swjma7bmr5oxep5lb9xdb">
-      <ObjectId>17266</ObjectId>
-      <StateNumber>1048</StateNumber>
+    <index id="44" parent="29" name="uk_7lm4swjma7bmr5oxep5lb9xdb">
+      <ObjectId>18007</ObjectId>
+      <StateNumber>1416</StateNumber>
       <ColNames>email_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="43" parent="29" name="admin_details_pkey">
-      <ObjectId>17244</ObjectId>
-      <StateNumber>1042</StateNumber>
+    <key id="45" parent="29" name="admin_details_pkey">
+      <ObjectId>17985</ObjectId>
+      <StateNumber>1410</StateNumber>
       <ColNames>admin_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>admin_details_pkey</UnderlyingIndexName>
     </key>
-    <key id="44" parent="29" name="uk_7lm4swjma7bmr5oxep5lb9xdb">
-      <ObjectId>17267</ObjectId>
-      <StateNumber>1048</StateNumber>
+    <key id="46" parent="29" name="uk_7lm4swjma7bmr5oxep5lb9xdb">
+      <ObjectId>18008</ObjectId>
+      <StateNumber>1416</StateNumber>
       <ColNames>email_id</ColNames>
       <UnderlyingIndexName>uk_7lm4swjma7bmr5oxep5lb9xdb</UnderlyingIndexName>
     </key>
-    <column id="45" parent="30" name="airlineid">
+    <column id="47" parent="30" name="airlineid">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1043</StateNumber>
+      <StateNumber>1411</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="46" parent="30" name="home_country">
+    <column id="48" parent="30" name="home_country">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1043</StateNumber>
+      <StateNumber>1411</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="47" parent="30" name="airline_name">
+    <column id="49" parent="30" name="airline_name">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1043</StateNumber>
+      <StateNumber>1411</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="48" parent="30" name="admin">
+    <column id="50" parent="30" name="admin">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>1043</StateNumber>
+      <StateNumber>1411</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="49" parent="30" name="airlines_pkey">
-      <ObjectId>17248</ObjectId>
-      <StateNumber>1043</StateNumber>
+    <index id="51" parent="30" name="airlines_pkey">
+      <ObjectId>17989</ObjectId>
+      <StateNumber>1411</StateNumber>
       <ColNames>airlineid</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="50" parent="30" name="airlines_pkey">
-      <ObjectId>17249</ObjectId>
-      <StateNumber>1043</StateNumber>
+    <key id="52" parent="30" name="airlines_pkey">
+      <ObjectId>17990</ObjectId>
+      <StateNumber>1411</StateNumber>
       <ColNames>airlineid</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>airlines_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="51" parent="30" name="fk47hyua6jahkyqnep954lpmq2x">
-      <ObjectId>17270</ObjectId>
-      <StateNumber>1050</StateNumber>
+    <foreign-key id="53" parent="30" name="fk47hyua6jahkyqnep954lpmq2x">
+      <ObjectId>18011</ObjectId>
+      <StateNumber>1418</StateNumber>
       <ColNames>admin</ColNames>
-      <RefTableId>17240</RefTableId>
+      <RefTableId>17981</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>admin_details</RefTableName>
       <RefKeyName>admin_details_pkey</RefKeyName>
       <RefColNames>admin_id</RefColNames>
     </foreign-key>
-    <column id="52" parent="31" name="airlines_airlineid">
+    <column id="54" parent="31" name="airlines_airlineid">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1412</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="55" parent="31" name="flights_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1412</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="56" parent="31" name="uk_p65tcwdi98rb6ehhpffdbq9jk">
+      <ObjectId>18009</ObjectId>
+      <StateNumber>1417</StateNumber>
+      <ColNames>flights_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="57" parent="31" name="uk_p65tcwdi98rb6ehhpffdbq9jk">
+      <ObjectId>18010</ObjectId>
+      <StateNumber>1417</StateNumber>
+      <ColNames>flights_id</ColNames>
+      <UnderlyingIndexName>uk_p65tcwdi98rb6ehhpffdbq9jk</UnderlyingIndexName>
+    </key>
+    <foreign-key id="58" parent="31" name="fketpthhh9g35cs1d6ycvvhu24i">
+      <ObjectId>18021</ObjectId>
+      <StateNumber>1420</StateNumber>
+      <ColNames>airlines_airlineid</ColNames>
+      <RefTableId>17986</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>airlines</RefTableName>
+      <RefKeyName>airlines_pkey</RefKeyName>
+      <RefColNames>airlineid</RefColNames>
+    </foreign-key>
+    <foreign-key id="59" parent="31" name="fkmku0g03u85qnwgbcb9px8io01">
+      <ObjectId>18016</ObjectId>
+      <StateNumber>1419</StateNumber>
+      <ColNames>flights_id</ColNames>
+      <RefTableId>17994</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>flights</RefTableName>
+      <RefKeyName>flights_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="60" parent="32" name="airlines_airlineid">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1044</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="53" parent="31" name="routes_id">
+    <column id="61" parent="32" name="routes_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1044</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="54" parent="31" name="uk_4ipbgrunqi1q2yfp3whebne3b">
+    <index id="62" parent="32" name="uk_4ipbgrunqi1q2yfp3whebne3b">
       <ObjectId>17268</ObjectId>
       <StateNumber>1049</StateNumber>
       <ColNames>routes_id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="55" parent="31" name="uk_4ipbgrunqi1q2yfp3whebne3b">
+    <key id="63" parent="32" name="uk_4ipbgrunqi1q2yfp3whebne3b">
       <ObjectId>17269</ObjectId>
       <StateNumber>1049</StateNumber>
       <ColNames>routes_id</ColNames>
       <UnderlyingIndexName>uk_4ipbgrunqi1q2yfp3whebne3b</UnderlyingIndexName>
     </key>
-    <foreign-key id="56" parent="31" name="fko04tkg0twsdvgokroh8vix0xh">
-      <ObjectId>17280</ObjectId>
-      <StateNumber>1052</StateNumber>
-      <ColNames>airlines_airlineid</ColNames>
-      <RefTableId>17245</RefTableId>
-      <RefColPositions>1</RefColPositions>
-      <RefTableName>airlines</RefTableName>
-      <RefKeyName>airlines_pkey</RefKeyName>
-      <RefColNames>airlineid</RefColNames>
-    </foreign-key>
-    <foreign-key id="57" parent="31" name="fkoderv87kq29ijskrbkxkscfvx">
+    <foreign-key id="64" parent="32" name="fkoderv87kq29ijskrbkxkscfvx">
       <ObjectId>17275</ObjectId>
       <StateNumber>1051</StateNumber>
       <ColNames>routes_id</ColNames>
@@ -1116,159 +1162,215 @@ true posixrules
       <RefKeyName>routes_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="58" parent="32" name="flight_id">
+    <column id="65" parent="33" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1045</StateNumber>
+      <StateNumber>1413</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="59" parent="32" name="frequency">
+    <column id="66" parent="33" name="departuretime">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <StateNumber>1045</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <foreign-key id="60" parent="32" name="fk1tb7xa5xng8revh7me3kchmvo">
-      <ObjectId>17285</ObjectId>
-      <StateNumber>1053</StateNumber>
-      <ColNames>flight_id</ColNames>
-      <RefTableId>17261</RefTableId>
-      <RefColPositions>1</RefColPositions>
-      <RefTableName>routes</RefTableName>
-      <RefKeyName>routes_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="61" parent="33" name="id">
-      <Position>1</Position>
-      <DataType>integer|0s</DataType>
+      <DataType>time|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>1046</StateNumber>
-      <TypeId>23</TypeId>
+      <StateNumber>1413</StateNumber>
+      <TypeId>1083</TypeId>
     </column>
-    <column id="62" parent="33" name="destination">
-      <Position>2</Position>
-      <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1046</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="63" parent="33" name="distance">
+    <column id="67" parent="33" name="price">
       <Position>3</Position>
       <DataType>double precision|0s</DataType>
-      <StateNumber>1046</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>1413</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="64" parent="33" name="source">
+    <column id="68" parent="33" name="totalseats">
       <Position>4</Position>
-      <DataType>varchar(30)|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1046</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="65" parent="33" name="flight_id">
-      <Position>5</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>1046</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>1413</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="66" parent="33" name="places_pkey">
-      <ObjectId>17259</ObjectId>
-      <StateNumber>1046</StateNumber>
+    <column id="69" parent="33" name="parent_airline_id">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1413</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="70" parent="33" name="admin_id">
+      <Position>6</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1413</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="71" parent="33" name="flights_pkey">
+      <ObjectId>17997</ObjectId>
+      <StateNumber>1413</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="67" parent="33" name="places_pkey">
-      <ObjectId>17260</ObjectId>
-      <StateNumber>1046</StateNumber>
+    <key id="72" parent="33" name="flights_pkey">
+      <ObjectId>17998</ObjectId>
+      <StateNumber>1413</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>flights_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="73" parent="33" name="fkjtfvp8r734go1rgkge5fag458">
+      <ObjectId>18026</ObjectId>
+      <StateNumber>1421</StateNumber>
+      <ColNames>parent_airline_id</ColNames>
+      <RefTableId>17986</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>airlines</RefTableName>
+      <RefKeyName>airlines_pkey</RefKeyName>
+      <RefColNames>airlineid</RefColNames>
+    </foreign-key>
+    <foreign-key id="74" parent="33" name="fkjry3n9lq2tcnva4375d4n8wgl">
+      <ObjectId>18031</ObjectId>
+      <StateNumber>1422</StateNumber>
+      <ColNames>admin_id</ColNames>
+      <RefTableId>17981</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>admin_details</RefTableName>
+      <RefKeyName>admin_details_pkey</RefKeyName>
+      <RefColNames>admin_id</RefColNames>
+    </foreign-key>
+    <column id="75" parent="34" name="flight_id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1414</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="76" parent="34" name="frequency">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>1414</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <foreign-key id="77" parent="34" name="fkljyrewiccvrk90spmeqf8oo9u">
+      <ObjectId>18036</ObjectId>
+      <StateNumber>1423</StateNumber>
+      <ColNames>flight_id</ColNames>
+      <RefTableId>17994</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>flights</RefTableName>
+      <RefKeyName>flights_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="78" parent="35" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1415</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="79" parent="35" name="destination">
+      <Position>2</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1415</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="80" parent="35" name="distance">
+      <Position>3</Position>
+      <DataType>double precision|0s</DataType>
+      <StateNumber>1415</StateNumber>
+      <TypeId>701</TypeId>
+    </column>
+    <column id="81" parent="35" name="source">
+      <Position>4</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1415</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="82" parent="35" name="flight_id">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>1415</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="83" parent="35" name="places_pkey">
+      <ObjectId>18005</ObjectId>
+      <StateNumber>1415</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="84" parent="35" name="places_pkey">
+      <ObjectId>18006</ObjectId>
+      <StateNumber>1415</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>places_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="68" parent="33" name="fkfqx0dvauirso7y9r8la073j7l">
-      <ObjectId>17290</ObjectId>
-      <StateNumber>1054</StateNumber>
+    <foreign-key id="85" parent="35" name="fkrgljomh12efdl22y6kync8m2h">
+      <ObjectId>18041</ObjectId>
+      <StateNumber>1424</StateNumber>
       <ColNames>flight_id</ColNames>
-      <RefTableId>17261</RefTableId>
+      <RefTableId>17994</RefTableId>
       <RefColPositions>1</RefColPositions>
-      <RefTableName>routes</RefTableName>
-      <RefKeyName>routes_pkey</RefKeyName>
+      <RefTableName>flights</RefTableName>
+      <RefKeyName>flights_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="69" parent="34" name="id">
+    <column id="86" parent="36" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1047</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="70" parent="34" name="departuretime">
+    <column id="87" parent="36" name="departuretime">
       <Position>2</Position>
       <DataType>time|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1047</StateNumber>
       <TypeId>1083</TypeId>
     </column>
-    <column id="71" parent="34" name="price">
+    <column id="88" parent="36" name="price">
       <Position>3</Position>
       <DataType>double precision|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1047</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="72" parent="34" name="totalseats">
+    <column id="89" parent="36" name="totalseats">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>1047</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="73" parent="34" name="admin">
+    <column id="90" parent="36" name="admin">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>1047</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="74" parent="34" name="airlines_airlineid">
+    <column id="91" parent="36" name="airlines_airlineid">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>1047</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="75" parent="34" name="routes_pkey">
+    <index id="92" parent="36" name="routes_pkey">
       <ObjectId>17264</ObjectId>
       <StateNumber>1047</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="76" parent="34" name="routes_pkey">
+    <key id="93" parent="36" name="routes_pkey">
       <ObjectId>17265</ObjectId>
       <StateNumber>1047</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>routes_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="77" parent="34" name="fk726ripj09whwtqrwbfb0318pl">
-      <ObjectId>17295</ObjectId>
-      <StateNumber>1055</StateNumber>
-      <ColNames>admin</ColNames>
-      <RefTableId>17240</RefTableId>
-      <RefColPositions>1</RefColPositions>
-      <RefTableName>admin_details</RefTableName>
-      <RefKeyName>admin_details_pkey</RefKeyName>
-      <RefColNames>admin_id</RefColNames>
-    </foreign-key>
-    <foreign-key id="78" parent="34" name="fkm2tse3exvtac25t47fl60jhlj">
-      <ObjectId>17300</ObjectId>
-      <StateNumber>1056</StateNumber>
-      <ColNames>airlines_airlineid</ColNames>
-      <RefTableId>17245</RefTableId>
-      <RefColPositions>1</RefColPositions>
-      <RefTableName>airlines</RefTableName>
-      <RefKeyName>airlines_pkey</RefKeyName>
-      <RefColNames>airlineid</RefColNames>
-    </foreign-key>
   </database-model>
 </dataSource>

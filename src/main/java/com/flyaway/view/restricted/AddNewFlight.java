@@ -45,13 +45,14 @@ public class AddNewFlight extends HttpServlet {
 
         Double price = Double.parseDouble(request.getParameter("price"));
         Places place = new Places(from, to, 0.0);
-        Flights flight = new Flights(place, departureTime, flightFrequency, price);
-        place.setFlight(flight);
+        Flights flight = new Flights(departureTime, flightFrequency, price);
+        //place.setFlight(flight);
+        flight.setPlaces(place);
         System.out.println(flight);
         FlightController flightController = new FlightController();
         response.setContentType("text/html");
         try (final PrintWriter writer = response.getWriter()) {
-            if (flightController.addNewFlight(flight, adminId, airLineId)) {
+            if (flightController.addNewFlight(flight, place,  adminId, airLineId)) {
                 writer.println("    <h3 style=\"background-color: chartreuse\"> New Flight has been added successfully</h3>\n");
                 request.getRequestDispatcher("welcome.html").include(request, response);
 
@@ -61,7 +62,7 @@ public class AddNewFlight extends HttpServlet {
                         "        please check the server log and try again..\n" +
                         "    </br>..</h3>\n" +
                         "    ");
-                request.getRequestDispatcher("/restricted/add-new-flight").include(request, response);
+                //request.getRequestDispatcher("/restricted/add-new-flight").include(request, response);
 
             }
         }

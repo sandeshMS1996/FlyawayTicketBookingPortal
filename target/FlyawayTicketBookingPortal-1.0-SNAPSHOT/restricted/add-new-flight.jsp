@@ -10,19 +10,6 @@
 <html>
 <head>
     <title>Add new Flight</title>
-    <style>
-        body {
-            position: center;
-
-        }
-        .select-box {
-            display: block;
-            margin: 0 auto;
-            font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
-            font-size: 18px;
-            color: #60666d
-        }
-    </style>
 </head>
 <body style="background-color: chartreuse">
 <% if (request.getAttribute("airLines") == null) {
@@ -40,7 +27,7 @@
 <h1> Add new Flight...</h1>
 <% Map<Integer, String> pairs = (Map<Integer, String>) request.getAttribute("airLines");
 %>
-<form action="/restricted/add-new-flight" method="post">
+<form action="add-new-flight" method="post">
     <label> select Airlines:
         <select name="airline" class="select-box">
             <% for (Map.Entry<Integer, String> i : pairs.entrySet()) { %>

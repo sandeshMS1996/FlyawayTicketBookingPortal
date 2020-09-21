@@ -6,6 +6,7 @@ import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -49,17 +50,15 @@ public class Flights {
     @JoinColumn(name = "parent_airline_id", updatable = false,  nullable = false)
     private Airlines ParentAirline;
 
-
-    @OneToOne(mappedBy = "flight", cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false)
+    @OneToOne(mappedBy = "flight", cascade = CascadeType.ALL, optional = false)
     private Places places;
 
     public Flights() {
     }
 
 
-    public Flights(Places places, LocalTime departureTime, Set<FlightSchedule> frequency, Double price) {
-        this.places  = places;
-        this.places.setDistance(0.0);
+    public Flights(LocalTime departureTime, Set<FlightSchedule> frequency, Double price) {
         this.departureTime = departureTime;
         this.frequency = frequency;
         this.price = price;
@@ -87,11 +86,12 @@ public class Flights {
         this.frequency = frequency;
     }
 
-    public Places getPlaces() {
+    public Places  getPlaces() {
         return places;
     }
 
     public void setPlaces(Places places) {
+
         this.places = places;
     }
 
