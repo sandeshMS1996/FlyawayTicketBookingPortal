@@ -1,4 +1,6 @@
-<%@ page import="com.flyaway.models.Flights" %><%--
+<%@ page import="com.flyaway.models.Flights" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %><%--
   Created by IntelliJ IDEA.
   User: san
   Date: 21-Sep-20
@@ -25,11 +27,18 @@
 </head>
 <body style="background-color: lightblue">
 <% HttpSession session1 = request.getSession(false);
-    if(session1 ==  null || session1.getAttribute("isValidRequest")  == null ) {
+    if(session1 ==  null || session1.getAttribute("isValidRequest")  == null ||
+            session1.getAttribute("travelDate") == null) {
         response.sendRedirect("/home");
+        System.out.println("Returnng to home.. from book ticket");
+
         return;
 }%>
-<% session1.invalidate();%>
+<% session1.setAttribute("isValidRequest", null);
+    session1.setAttribute("flightId", request.getParameter("id"));
+    session1.setAttribute("price", request.getParameter("price") );
+    session1.setAttribute("isValidPaymentRequest" , true);
+%>
 <h1> Make your Payment: </h1>
 <h3> Please do not refresh this page...</h3>
 <table>
@@ -53,23 +62,29 @@
         <td><%= request.getParameter("price") %></td>
     </tr>
     <tr>
+        <td style="background-color: #CCCCCC">Travel  Date </td>
+        <td><%= ((LocalDate) session1.getAttribute("travelDate")).format(
+                DateTimeFormatter.ofPattern("dd-MMM-yyyy")
+        )%></td>
+    </tr>
+
+    <tr>
         <td style="background-color: #CCCCCC">Departure time </td>
         <td><%= request.getParameter("time") %> Hrs</td>
     </tr>
-
-
 
 </table>
 <br>
 
 <h1> Provide your Dummy payment details:</h1> <br>
-
-    <form method="post" action=".">
+    <% System.out.println("passing control to Payment gateway servlet"); %>
+    <form method="post" action="payment-gateway">
+        Name: <input type="text" name="name"> <br> <br>
         Email ID(YOur ticket would be sent to this email ID):
         <input type="email" name="CustomerEmail"> <br><br>
         Phone Number: <input type="tel" name = "phone"> <br> <br>
         Amount: <input type="text" value="200" disabled maxlength="10"> <br> <br>
-        UPI ID: <input type="text" placeholder="UPI ID"> <br> <br>
+        UPI ID: <input type="text" placeholder="UPI ID" name="upiId"> <br> <br>
         <input type="submit" value="Make Payment">
     </form>
 

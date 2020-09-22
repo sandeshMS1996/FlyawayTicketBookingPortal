@@ -1,6 +1,5 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.flyaway.models.Places" %>
-<%@ page import="java.util.Iterator" %>
 <%@ page import="java.time.LocalDate" %><%--
   Created by IntelliJ IDEA.
   User: san
@@ -20,38 +19,42 @@
     </form>
 </div>
 
-<% List<Places> places =  null;
-    if(request.getAttribute("places") != null) {
-     places = (List<Places>) request.getAttribute("places");
-} else {
-    response.sendRedirect("/home");
-    return;
-} if(places.size()  == 0) { %>
-       <h3 style="color: red">There are no flights available right now..</h3>
-<% return; } %>
+<% List<Places> places = null;
+    if (request.getAttribute("places") != null) {
+        places = (List<Places>) request.getAttribute("places");
+        request.setAttribute("places", null);
+    } else {
+        response.sendRedirect("/home");
+        return;
+    }
+    if (places.size() == 0) { %>
+<h3 style="color: red">There are no flights available right now..</h3>
+<% return;
+} %>
 
+<h1 style="alignment: center"> Welcome to Flyaway ticket booking portal </h1>
+<form method="post" action="home">
+    <label for="travelDate">Choose travel Date Date </label>
 
-    <h1 style="alignment: center"> Welcome to Flyaway ticket booking portal </h1>
-    <form method="post" action="home">
-        <label for="travelDate">Choose travel Date Date </label>
-
-        <input type="date" id="travelDate" name="travelDate"
-        min="<%=LocalDate.now().plusDays(1)%>" max="<%= LocalDate.now().plusMonths(3)%>"> <br><br>
-        <label for="place"> Select your Source and destination</label>
-        <select name="place" id="place">
-             <% for(Places place : places ) { %>
-            <option value="<%=place.getId()%>">
-                <%= place.getSource() %> to <%= place.getDestination()%></option>
-                <%}%>
-            </select> <br> <br>
-        <label for="passengers"> select number of Passengers</label>
-        <select id="passengers" name="passengers">
-        <% for( int i=0;i<10;i++) { %>
-            <option value="<%= i%>"><%= i %></option>
+    <input type="date" id="travelDate" name="travelDate"
+           min="<%=LocalDate.now().plusDays(1)%>" max="<%= LocalDate.now().plusMonths(3)%>"> <br><br>
+    <label for="place"> Select your Source and destination</label>
+    <select name="place" id="place">
+        <% for (Places place : places) { %>
+        <option value="<%=place.getId()%>">
+            <%= place.getSource() %> to <%= place.getDestination()%>
+        </option>
+        <%}%>
+    </select> <br> <br>
+    <label for="passengers"> select number of Passengers</label>
+    <select id="passengers" name="passengers">
+        <% for (int i = 1; i < 10; i++) { %>
+        <option value="<%= i%>"><%= i %>
+        </option>
         <% } %>
-        </select> <br> <br>
+    </select> <br> <br>
 
-        <input type="submit" value="search">
-    </form>
+    <input type="submit" value="search Flights">
+</form>
 </body>
 </html>

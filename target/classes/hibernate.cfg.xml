@@ -20,7 +20,7 @@
     <mapping class="com.flyaway.models.Airlines"/>
     <mapping class="com.flyaway.models.Flights"/>
     <mapping class="com.flyaway.models.Places"/>
-
+    <mapping class="com.flyaway.models.Customer"/>
   </session-factory>
 
 </hibernate-configuration>

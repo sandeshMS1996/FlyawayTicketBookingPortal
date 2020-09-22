@@ -8,7 +8,7 @@ public class MessageFormatter {
             formattedString = String.format("<h3 style=\"color: red\">%s</h3>", message);
         else if(format == Formats.SUCCESS)
             formattedString =  String.format("\n" +
-                    "<h3 style=\"color: chartreuse\">%s</h3>", message);
+                    "<h3 style=\"color:  blue\">%s</h3>", message);
         else
             formattedString = String.format("\n" +
                     "<h3 style=\"color: cornflowerblue\"> %s</h3>", message);
