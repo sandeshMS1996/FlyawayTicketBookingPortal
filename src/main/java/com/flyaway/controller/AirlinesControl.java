@@ -14,12 +14,12 @@ public class AirlinesControl {
     public boolean addNewAirline(Airlines airline, Integer adminID) {
         try (Session session = new DBConnection().getSession()) {
             session.getTransaction().begin();
-            Admin admin = (Admin) session.get(Admin.class, adminID);
+            Admin admin =  session.get(Admin.class, adminID);
             airline.setAdmin(admin);
-            admin.getAirlines().add(airline);
-            System.out.println(admin);
-            admin.getAirlines().forEach(System.out::println);
-            session.persist(admin);
+            //admin.getAirlines().add(airline);
+            //System.out.println(admin);
+            //admin.getAirlines().forEach(System.out::println);
+            session.persist(airline);
             session.getTransaction().commit();
             //session.close();
             return true;

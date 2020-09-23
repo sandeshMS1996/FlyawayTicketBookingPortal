@@ -3,8 +3,7 @@ package com.flyaway.models;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Table(name = "admin_details")
@@ -33,11 +32,6 @@ public class Admin {
     @Column(name = "password",length = 64, nullable = false)
     private String password;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "admin")
-    List<Airlines> airlines = new ArrayList<Airlines>();
-
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "admin")
-    List<Flights> routes = new ArrayList<>();
 
     public Admin() {
     }
@@ -50,22 +44,6 @@ public class Admin {
         this.phoneNo = phoneNo;
         this.emailID = emailID;
         this.password = password;
-    }
-
-    public List<Flights> getRoutes() {
-        return routes;
-    }
-
-    public void setRoutes(List<Flights> routes) {
-        this.routes = routes;
-    }
-
-    public List<Airlines> getAirlines() {
-        return airlines;
-    }
-
-    public void setAirlines(List<Airlines> admin) {
-        this.airlines = admin;
     }
 
     public Integer getAdminId() {

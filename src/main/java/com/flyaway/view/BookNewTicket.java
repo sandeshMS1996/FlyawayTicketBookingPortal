@@ -20,7 +20,9 @@ import java.util.Objects;
 @WebServlet(name = "BookNewTicket", urlPatterns = "/home")
 public class BookNewTicket extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getSession(false).invalidate();
+        if(request.getSession(false) != null) {
+            request.getSession(false).invalidate();
+        }
         HttpSession session = request.getSession(true);
         response.setContentType("text/html");
         try (final PrintWriter writer = response.getWriter()) {
@@ -34,9 +36,9 @@ public class BookNewTicket extends HttpServlet {
                 LocalDate travelDate =
                         LocalDate.parse(request.getParameter("travelDate"));
                 int place = Integer.parseInt(request.getParameter("place"));
-                int numberOfPassengers = Integer.parseInt(request.getParameter("passengers"));
+                //int numberOfPassengers = Integer.parseInt(request.getParameter("passengers"));
                 String dayOfWeek = travelDate.getDayOfWeek().toString();
-                session.setAttribute("numberOfPassengers", numberOfPassengers);
+                //session.setAttribute("numberOfPassengers", numberOfPassengers);
                 session.setAttribute("travelDate", travelDate);
                 FlightController controller = new FlightController();
                 List<Flights> flights = controller.getFlightsByWeekday(dayOfWeek, place);

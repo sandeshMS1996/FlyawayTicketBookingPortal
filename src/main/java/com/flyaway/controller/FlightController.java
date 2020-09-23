@@ -14,7 +14,7 @@ public class FlightController {
             Airlines airline = session.get(Airlines.class, airlineID);
             Admin admin = session.get(Admin.class, AdminId);
             flight.setParentAirline(airline);
-            //flight.setPlaces(place);
+            flight.setPlaces(place);
             place.setFlight(flight);
             flight.setAdmin(admin);
             session.persist(flight);

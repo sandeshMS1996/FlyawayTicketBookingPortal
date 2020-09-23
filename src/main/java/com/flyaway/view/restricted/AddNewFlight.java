@@ -23,6 +23,7 @@ import java.util.Set;
 @WebServlet(name = "AddNewFlight", urlPatterns = "/restricted/add-new-flight")
 public class AddNewFlight extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
         final HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("user") == null) {
             request.setAttribute("message", "please login before adding/updating data..");
@@ -30,41 +31,47 @@ public class AddNewFlight extends HttpServlet {
             return;
         }
 
-        final Integer adminId = (Integer) session.getAttribute("user");
-        System.out.println("[INFO] Admin + " + adminId + "adding new Flight");
-        int airLineId = Integer.parseInt(request.getParameter("airline"));
-        String from = request.getParameter("from");
-        String to = request.getParameter("to");
-        LocalTime departureTime = LocalTime.parse(request.getParameter("departure"), DateTimeFormatter.ofPattern("HH:mm"));
-        //final String frequency = request.getParameter("frequency");
-        final String[] frequencies = request.getParameterValues("frequency");
-        Set<FlightSchedule> flightFrequency = new HashSet<FlightSchedule>();
-        for (String frequency : frequencies) {
-            flightFrequency.add(FlightSchedule.valueOf(frequency));
-        }
-
-        Double price = Double.parseDouble(request.getParameter("price"));
-        Places place = new Places(from, to, 0.0);
-        Flights flight = new Flights(departureTime, flightFrequency, price);
-        //place.setFlight(flight);
-        flight.setPlaces(place);
-        System.out.println(flight);
-        FlightController flightController = new FlightController();
-        response.setContentType("text/html");
-        try (final PrintWriter writer = response.getWriter()) {
-            if (flightController.addNewFlight(flight, place,  adminId, airLineId)) {
-                writer.println("    <h3 style=\"background-color: chartreuse\"> New Flight has been added successfully</h3>\n");
-                request.getRequestDispatcher("welcome.html").include(request, response);
-
-            } else {
-                writer.println("<h3 style=\"background-color: red\">" +
-                        "Could not add flight due to unexpected error<br>\n" +
-                        "        please check the server log and try again..\n" +
-                        "    </br>..</h3>\n" +
-                        "    ");
-                //request.getRequestDispatcher("/restricted/add-new-flight").include(request, response);
-
+        try {
+            final Integer adminId = (Integer) session.getAttribute("user");
+            System.out.println("[INFO] Admin + " + adminId + "adding new Flight");
+            int airLineId = Integer.parseInt(request.getParameter("airline"));
+            String from = request.getParameter("from");
+            String to = request.getParameter("to");
+            LocalTime departureTime = LocalTime.parse(request.getParameter("departure"), DateTimeFormatter.ofPattern("HH:mm"));
+            //final String frequency = request.getParameter("frequency");
+            final String[] frequencies = request.getParameterValues("frequency");
+            Set<FlightSchedule> flightFrequency = new HashSet<FlightSchedule>();
+            for (String frequency : frequencies) {
+                flightFrequency.add(FlightSchedule.valueOf(frequency));
             }
+
+            Double price = Double.parseDouble(request.getParameter("price"));
+            Places place = new Places(from, to, 0.0);
+            Flights flight = new Flights(departureTime, flightFrequency, price);
+            //place.setFlight(flight);
+            flight.setPlaces(place);
+            System.out.println(flight);
+            FlightController flightController = new FlightController();
+
+            try (final PrintWriter writer = response.getWriter()) {
+                if (flightController.addNewFlight(flight, place,  adminId, airLineId)) {
+                    writer.println("    <h3 style=\"background-color: chartreuse\"> New Flight has been added successfully</h3>\n");
+                    request.getRequestDispatcher("welcome.html").include(request, response);
+
+                } else {
+                    writer.println("<h3 style=\"background-color: red\">" +
+                            "Could not add flight due to unexpected error<br>\n" +
+                            "        please check the server log and try again..\n" +
+                            "    </br>..</h3>\n" +
+                            "    ");
+                    //request.getRequestDispatcher("/restricted/add-new-flight").include(request, response);
+
+                }
+            }
+
+        }catch (Exception e) {
+            response.getWriter().println("PLease Enter the correct details and try again...");
+            doGet(request, response);
         }
 
     }
@@ -85,4 +92,5 @@ public class AddNewFlight extends HttpServlet {
             request.getRequestDispatcher("/restricted/add-new-flight.jsp").forward(request, response);
         }
     }
+
 }

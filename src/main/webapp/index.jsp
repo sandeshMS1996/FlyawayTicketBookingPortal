@@ -46,13 +46,6 @@
         </option>
         <%}%>
     </select> <br> <br>
-    <label for="passengers"> select number of Passengers</label>
-    <select id="passengers" name="passengers">
-        <% for (int i = 1; i < 10; i++) { %>
-        <option value="<%= i%>"><%= i %>
-        </option>
-        <% } %>
-    </select> <br> <br>
 
     <input type="submit" value="search Flights">
 </form>

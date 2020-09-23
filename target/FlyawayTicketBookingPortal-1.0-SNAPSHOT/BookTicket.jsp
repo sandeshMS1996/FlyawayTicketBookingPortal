@@ -39,6 +39,7 @@
     session1.setAttribute("price", request.getParameter("price") );
     session1.setAttribute("isValidPaymentRequest" , true);
 %>
+
 <h1> Make your Payment: </h1>
 <h3> Please do not refresh this page...</h3>
 <table>
@@ -59,7 +60,7 @@
     </tr>
     <tr>
         <td style="background-color: #CCCCCC">Price</td>
-        <td><%= request.getParameter("price") %></td>
+        <td><%request.getParameter("price");%> </td>
     </tr>
     <tr>
         <td style="background-color: #CCCCCC">Travel  Date </td>
@@ -79,12 +80,12 @@
 <h1> Provide your Dummy payment details:</h1> <br>
     <% System.out.println("passing control to Payment gateway servlet"); %>
     <form method="post" action="payment-gateway">
-        Name: <input type="text" name="name"> <br> <br>
+        Name: <input type="text" name="firstname"> <br> <br>
         Email ID(YOur ticket would be sent to this email ID):
-        <input type="email" name="CustomerEmail"> <br><br>
-        Phone Number: <input type="tel" name = "phone"> <br> <br>
-        Amount: <input type="text" value="200" disabled maxlength="10"> <br> <br>
-        UPI ID: <input type="text" placeholder="UPI ID" name="upiId"> <br> <br>
+        <input type="email" name="email"> <br><br>
+        Phone Number: <input type="text" name = "phone"> <br> <br>
+        UPI ID: <input type="text" placeholder="example.me@upi.com" name="upiId"> <br> <br>
+        Number of Passengers: <input type="number" min="1" max="10" id = "numberOfPassengers" name="numberOfPassengers">
         <input type="submit" value="Make Payment">
     </form>
 

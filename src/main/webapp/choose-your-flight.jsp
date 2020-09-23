@@ -49,7 +49,7 @@
 } %>
 
 <% HttpSession session1 = request.getSession(false);
-    if (session1 == null || session1.getAttribute("numberOfPassengers") == null
+    if (session1 == null
             || session1.getAttribute("travelDate") == null) {
         System.out.println("Returning to home.. from choose your flight");
 

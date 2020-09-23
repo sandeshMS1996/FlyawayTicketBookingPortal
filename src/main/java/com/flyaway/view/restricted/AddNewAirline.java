@@ -22,6 +22,8 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import static com.flyaway.view.restricted.ValidateInput.validateInput;
+
 @WebServlet(name = "AddNewAirline", urlPatterns = "/restricted/add-new-airline")
 public class AddNewAirline extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -81,18 +83,6 @@ public class AddNewAirline extends HttpServlet {
         }
     }
 
-
-    private Set<String> validateInput(HttpServletRequest request, Properties properties) {
-        Set<String> errors = new HashSet<>();
-        Enumeration<String> names = request.getParameterNames();
-        while (names.hasMoreElements()) {
-            String s = names.nextElement();
-            if (!Pattern.matches(properties.getProperty(s), request.getParameter(s)))
-                errors.add(s + " is not correct");
-        }
-
-        return errors;
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect("/restricted/add-new-airline.jsp");

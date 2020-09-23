@@ -55,11 +55,11 @@ else  { %>
 
         <tr>
             <td>Email ID: </td>
-            <td><input type="text" name="email" /></td>
+            <td><input type="text" name="email" placeholder="Example@domain.com"/></td>
         </tr>
         <tr>
             <td>Password: </td>
-            <td><input type="password" name="password" /></td>
+            <td><input type="password" name="password" placeholder="Example@123" /></td>
         </tr>
     </table>
     <input type="submit" value="Login" /></form>

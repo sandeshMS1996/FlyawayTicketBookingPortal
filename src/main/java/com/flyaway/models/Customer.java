@@ -22,6 +22,10 @@ public class Customer {
 
     @NotNull
     @Column(nullable = false)
+    private String emailId;
+
+    @NotNull
+    @Column(nullable = false)
     private String customerName;
 
     @NotNull
@@ -37,10 +41,12 @@ public class Customer {
 
     private int noOfPassengers;
 
-    public Customer(String customerName,
+    public Customer(String customerName, String emailId,
                     String phoneNumber, String upiID, double paymentMade, int noOfPassengers) {
+
         this.customerName = customerName;
         this.phoneNumber = phoneNumber;
+        this.emailId = emailId;
         this.upiID = upiID;
         this.paymentMade = paymentMade;
         this.noOfPassengers = noOfPassengers;
@@ -111,5 +117,13 @@ public class Customer {
 
         session.close();
 
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 }
