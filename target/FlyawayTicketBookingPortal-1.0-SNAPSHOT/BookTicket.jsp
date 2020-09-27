@@ -1,6 +1,7 @@
 <%@ page import="com.flyaway.models.Flights" %>
 <%@ page import="java.time.LocalDate" %>
-<%@ page import="java.time.format.DateTimeFormatter" %><%--
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.util.Enumeration" %><%--
   Created by IntelliJ IDEA.
   User: san
   Date: 21-Sep-20
@@ -40,6 +41,14 @@
     session1.setAttribute("isValidPaymentRequest" , true);
 %>
 
+<% final Enumeration<String> parameterNames = request.getParameterNames();
+    while (parameterNames.hasMoreElements()) {
+        String s =  parameterNames.nextElement();
+        System.out.println(s + " " + request.getParameter(s));
+    }
+
+%>
+
 <h1> Make your Payment: </h1>
 <h3> Please do not refresh this page...</h3>
 <table>
@@ -59,10 +68,6 @@
         <td><%= request.getParameter("to") %></td>
     </tr>
     <tr>
-        <td style="background-color: #CCCCCC">Price</td>
-        <td><%request.getParameter("price");%> </td>
-    </tr>
-    <tr>
         <td style="background-color: #CCCCCC">Travel  Date </td>
         <td><%= ((LocalDate) session1.getAttribute("travelDate")).format(
                 DateTimeFormatter.ofPattern("dd-MMM-yyyy")
@@ -80,12 +85,13 @@
 <h1> Provide your Dummy payment details:</h1> <br>
     <% System.out.println("passing control to Payment gateway servlet"); %>
     <form method="post" action="payment-gateway">
-        Name: <input type="text" name="firstname"> <br> <br>
+        Name: <input type="text" name="firstname" required> <br> <br>
         Email ID(YOur ticket would be sent to this email ID):
-        <input type="email" name="email"> <br><br>
-        Phone Number: <input type="text" name = "phone"> <br> <br>
-        UPI ID: <input type="text" placeholder="example.me@upi.com" name="upiId"> <br> <br>
-        Number of Passengers: <input type="number" min="1" max="10" id = "numberOfPassengers" name="numberOfPassengers">
+        <input type="email" name="email" required> <br><br>
+        Phone Number: <input type="text" name = "phone" required> <br> <br>
+        UPI ID: <input type="text" placeholder="example.me@upi.com" name="upiId" required> <br> <br>
+        Number of Passengers: <input type="number" min="1" max="10" required
+                                     id = "numberOfPassengers" name="numberOfPassengers">
         <input type="submit" value="Make Payment">
     </form>
 

@@ -11,7 +11,6 @@
     <title>Add new Trip</title>
 </head>
 <body>
-
 <form action="." method="post">
 </form>
 

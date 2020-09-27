@@ -46,8 +46,8 @@ public class AddNewAirline extends HttpServlet {
                 final Integer adminId = (Integer) session.getAttribute("user");
                 System.out.println("[INFO] Admin + " + adminId + "adding new Flight");
 
-                String name = request.getParameter("airlineName");
-                String country = request.getParameter("airlineCountry");
+                String name = request.getParameter("airlineName").toLowerCase();
+                String country = request.getParameter("airlineCountry").toLowerCase();
 
                 Airlines airlines = new Airlines(name, country);
 

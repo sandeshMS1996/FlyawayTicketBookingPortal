@@ -12,12 +12,14 @@ public class TicketController {
 
     public static List<Places> getAllPlaces() {
         try(Session session = new DBConnection().getSession()) {
-            return  (List<Places>)session.createQuery("from Places ").list();
+            return  (List<Places>) session.createQuery("from Places ").list();
+
         }catch (HibernateException e) {
             e.printStackTrace();
             return new ArrayList<>();
         }
 
     }
+
 
 }

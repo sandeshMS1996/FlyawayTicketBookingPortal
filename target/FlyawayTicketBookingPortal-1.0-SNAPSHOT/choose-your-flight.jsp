@@ -86,15 +86,16 @@
     <% } %>
 
     <%! public String buildQueryString(Flights flights) throws UnsupportedEncodingException {
+
+        System.out.println(" preparing query string for  flight " + flights.getId());
         return String.format("BookTicket.jsp?id=%s&name=%s&from=%s&to=%s&price=%s&time=%s",
                 flights.getId(),
                 flights.getParentAirline().getName(),
                 flights.getPlaces().getSource(),
-                flights.getPlaces().getDestination(),
+                flights.getPlaces().getDestination().replaceAll(" " , "_"),
                 flights.getPrice(),
                 flights.getDepartureTime()).replaceAll(" ", "%20%");
     } %>
 </table>
-
 </body>
 </html>

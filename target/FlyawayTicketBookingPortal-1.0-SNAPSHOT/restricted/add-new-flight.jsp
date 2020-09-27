@@ -29,7 +29,7 @@
 %>
 <form action="add-new-flight" method="post">
     <label> select Airlines:
-        <select name="airline" class="select-box">
+        <select name="airline" class="select-box" required>
             <% for (Map.Entry<Integer, String> i : pairs.entrySet()) { %>
             <option value="<%= i.getKey() %>"><%= i.getValue()%>
             </option>
@@ -38,13 +38,13 @@
     </label>
 
     <label> From:
-        <input type="text" name="from" size="30"/> <br> <br></label>
+        <input type="text" name="from" size="30"  required/> <br> <br></label>
     <label> To(*):
-        <input type="text" name="to" size="30"/> <br> <br> </label>
+        <input type="text" name="to" size="30" required/> <br> <br> </label>
     <label> Departure*:
-        <input type="time" name="departure" size="30"/> <br> <br></label>
+        <input type="time" name="departure" size="30" required/> <br> <br></label>
     <label for="frequency"> Frequency</label>
-    <select name="frequency" id="frequency" multiple class="select-box">
+    <select name="frequency" id="frequency" multiple class="select-box" required>
         <% FlightSchedule[] values = FlightSchedule.values();
             for (FlightSchedule value : values) { %>
         <option value="<%= value%>"><%= value %>
@@ -52,9 +52,9 @@
         <% } %>
     </select> <br><br>
     <label>Total Number of Seats
-        <input type="number" value="200"/> </label><br>
+        <input type="number" value="200" required min="100" max="400"/> </label><br>
     <label> price:
-        <input type="number" , name="price">
+        <input type="number" , name="price" required>
     </label> <br><br>
     <input type="submit" value="submit">
 </form>

@@ -15,7 +15,9 @@ public class ValidateInput {
         Enumeration<String> names = request.getParameterNames();
         while (names.hasMoreElements()) {
             String s = names.nextElement();
-            if (!Pattern.matches(properties.getProperty(s), request.getParameter(s)))
+            System.out.println(s + "=> " + request.getParameter(s));
+            if (properties.getProperty(s) != null &&
+                    !Pattern.matches(properties.getProperty(s), request.getParameter(s)))
                 errors.add(s + " is not correct");
         }
 

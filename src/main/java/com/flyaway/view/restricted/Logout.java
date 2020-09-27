@@ -16,8 +16,9 @@ public class Logout extends HttpServlet {
             System.out.println("[INFO] Destroying session" + session.getId() );
             session.invalidate();
         }
+        response.setContentType("text/html");
         request.setAttribute("message", "successfully logged out..");
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").include(request, response);
 
     }
 

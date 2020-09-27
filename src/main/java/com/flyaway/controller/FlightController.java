@@ -38,7 +38,7 @@ public class FlightController {
             dest = p.getDestination();
         } else return null;
         TypedQuery<Flights>  query =
-                session.createQuery("select f from Flights f join f.frequency  fre join" +
+                session.createQuery("select  f from Flights f join f.frequency  fre join" +
                         " f.places place where (fre = : weekOfDay or fre = :everyDay) and" +
                         "(place.source = :src and place.destination = : dest)");
         query.setParameter("everyDay" , FlightSchedule.valueOf("EVERYDAY"));

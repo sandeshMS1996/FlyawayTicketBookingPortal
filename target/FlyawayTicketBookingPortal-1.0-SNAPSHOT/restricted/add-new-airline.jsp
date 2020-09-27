@@ -18,9 +18,9 @@
 <h1> Add new Airline:</h1>
 <form action="/restricted/add-new-airline" method="post">
     <label> Airlines Name*:
-        <input type="text" name="airlineName" size="30"/> <br> <br></label>
+        <input type="text" name="airlineName" size="30" required/> <br> <br></label>
     <label> Airline Home country(*):
-        <input type="text" name="airlineCountry" size="30"/> <br> <br> </label>
+        <input type="text" name="airlineCountry" size="30" required/> <br> <br> </label>
     <input type="submit" value="Add new Airline">
 </form>
 

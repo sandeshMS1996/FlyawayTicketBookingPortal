@@ -36,10 +36,10 @@
 <form method="post" action="home">
     <label for="travelDate">Choose travel Date Date </label>
 
-    <input type="date" id="travelDate" name="travelDate"
+    <input type="date" id="travelDate" name="travelDate" required
            min="<%=LocalDate.now().plusDays(1)%>" max="<%= LocalDate.now().plusMonths(3)%>"> <br><br>
     <label for="place"> Select your Source and destination</label>
-    <select name="place" id="place">
+    <select name="place" id="place"  required>
         <% for (Places place : places) { %>
         <option value="<%=place.getId()%>">
             <%= place.getSource() %> to <%= place.getDestination()%>

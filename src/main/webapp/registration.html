@@ -28,19 +28,19 @@
 
 <form action="/register" method="post">
     <label> Firstname:
-    <input type="text" name="firstname" size="15"/> <br> <br></label>
+    <input type="text" name="firstname" size="15" required/> <br> <br></label>
     <label> LastName:
-    <input type="text" name="lastname" size="15"/> <br> <br> </label>
+    <input type="text" name="lastname" size="15" required/> <br> <br> </label>
     <label>Phone :
-    <input class="width: 10px" type="text" name="countryCode"  value="+91" size="2"/>
-    <input type="text" name="phone" size="10"/> <br> <br> </label>
+    <input class="width: 10px" type="text" name="countryCode"  value="+91" size="2" required/>
+    <input type="text" name="phone" size="10" required/> <br> <br> </label>
      <label>Email:
-    <input type="email" id="email" name="email"/> <br></label>
+    <input type="email" id="email" name="email" required/> <br></label>
     <br> <br>
     <label>Password:
-    <input type="Password" id="pass" name="password" placeholder="Example@123"> <br></label>
+    <input type="Password" id="pass" name="password" placeholder="Example@123" required> <br></label>
     <br> <br>
-    <label>Re-type password: <input type="Password" id="repass" name="repass" placeholder="Example@123"> <br><br></label>
+    <label>Re-type password: <input type="Password" id="repass" name="repass" placeholder="Example@123" required> <br><br></label>
     <input type="submit" value="Register"/>
 </form>
 </body>
